@@ -22,10 +22,18 @@ function App(){
     setValues(''); //reset form
   } // function to handle form info submission
 
+  const removeTodo = e => {
+    const index = Number(e.target.id);
+    //convert id index to a number from a string and catch in a variable
+    const temp = [...todos]; //catch current list in a variable
+    temp.splice(index,1); //remove one item from list at target index
+    setTodos(temp); //update state of list with newly spliced list
+  }
+
   return(
     <>
       {todos.map((todo, i) => 
-        <div className="todo" key={i}>{todo.text}</div>)}
+        <div className="todo" key={i} id={i} onClick={removeTodo}>{todo.text}</div>)}
     <form onSubmit={handleSubmit}>
       <input 
       type= "text"
